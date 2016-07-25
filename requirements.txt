@@ -19,6 +19,7 @@ pyOpenSSL==16.0.0
 pyRFC3339==1.0
 pyasn1==0.1.9
 pycparser==2.14
+pycrypto==2.6.1
 python2-pythondialog==3.4.0
 pytz==2016.6.1
 requests==2.10.0
