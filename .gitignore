@@ -12,3 +12,6 @@ pyvenv.cfg
 pip-selfcheck.json
 MANIFEST
 dist
+certs/.ssh
+certs/csr.der
+certs/key.pem

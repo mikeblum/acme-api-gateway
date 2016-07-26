@@ -1,6 +1,5 @@
 import os
 import logging
-import pkg_resources
 
 import boto3
 from boto3.s3.transfer import S3Transfer
@@ -68,11 +67,11 @@ logging.debug(authzr)
 
 authzr, authzr_response = acme.poll(authzr)
 
-csr = OpenSSL.crypto.load_certificate_request(
-    OpenSSL.crypto.FILETYPE_ASN1, pkg_resources.resource_string(
-        'acme', os.path.join('testdata', 'csr.der')))
+fo = open('csr.der', 'r')
+csrreq = OpenSSL.crypto.load_certificate_request(OpenSSL.crypto.FILETYPE_PEM, fo.read())
+
 try:
-    acme.request_issuance(jose.util.ComparableX509(csr), (authzr,))
+    acme.request_issuance(jose.util.ComparableX509(csrreq), (authzr,))
 except messages.Error as error:
     print ("This script is doomed to fail as no authorization "
            "challenges are ever solved. Error from server: {0}".format(error))
