@@ -15,3 +15,4 @@ dist
 certs/.ssh
 certs/csr.der
 certs/key.pem
+certs/letsencrypt.txt
