@@ -7,7 +7,7 @@ setup(
     author='Michael Blum',
     author_email='me@mblum.me',
     url='https://www.github.com/mikeblum/lets-encrypt-api-gateway',
-    packages=['letsencrypt-api-gateway'],
+    packages=[],
     license='MIT',
     long_description=open('README.md').read(),
 )
