@@ -21,7 +21,6 @@ DIRECTORY_URL = 'https://acme-staging.api.letsencrypt.org/directory'
 BITS = 2048  # minimum for Boulder
 DOMAIN = 'api.magicka.io'
 S3_BUCKET = DOMAIN
-KEYS_DIR = ".ssh"
 
 # upload ACME challenge to S3 @ .well-known/acme-challenge
 s3_client = boto3.client('s3', 'us-east-1')
@@ -33,20 +32,6 @@ s3_transfer.upload_file('letsencrypt.txt', S3_BUCKET,
                       '.well-known/acme-challenge/letsencrypt',
                        extra_args={'ContentType': "text/plain"}
                     )
-# generate a keypair
-private_key = RSA.generate(1024)
-public_key  = private_key.publickey()
-
-
-# create directories
-if not os.path.exists(KEYS_DIR):
-    os.makedirs(KEYS_DIR)
-
-# write DER keys to disk
-with open(".ssh/{}".format(DOMAIN), 'w') as id_rsa:
-    id_rsa.write(private_key.exportKey('DER'))
-with open(".ssh/{}.pub".format(DOMAIN), 'w') as id_rsa_pub:
-    id_rsa_pub.write(public_key.exportKey('DER'))
 
 # generate_private_key requires cryptography>=0.5
 key = jose.JWKRSA(key=rsa.generate_private_key(
