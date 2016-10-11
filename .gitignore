@@ -2,3 +2,5 @@
 csr.der
 key.pem
 env/
+certs
+accounts
