@@ -14,6 +14,10 @@ import route53
 
 # logging.basicConfig(level=logging.DEBUG)
 TTL = 60 # seconds
+CERT_FILE = "cert.pem"
+PRIVATE_KEY_FILE = "privkey.pem"
+CHAIN_FILE = "chain.pem"
+FULL_CHAIN_FILE = "fullchain.pem"
 
 def upload_dns_challange(domain, challenge):
     """
@@ -76,9 +80,34 @@ def upload_dns_challange(domain, challenge):
 def cleanup_dns_challange(domain, challenge):
     print('removing DNS challange')
 
-def deploy_to_api_gateway(domain, cert):
+def deploy_to_api_gateway(domain, certfile):
     print('deploying certificates to API Gateway')
     api_gateway_client = boto3.client('apigateway')
+    path, filename = os.path.split(certfile)
+    cert_body = None
+    with open(certfile) as cert:
+        cert_body = cert.read()
+    # get contents of the private key
+    private_key = None
+    with open(os.path.join(path, PRIVATE_KEY_FILE)) as cert:
+        private_key = cert.read()
+    # get contents of the certificate chain
+    chain = None
+    with open(os.path.join(path, CHAIN_FILE)) as cert:
+        chain = cert.read()
+    print(cert_body)
+    print()
+    print(private_key)
+    print()
+    print(chain)
+    response = api_gateway_client.create_domain_name(
+        domainName=domain,
+        certificateName=os.path.basename(certfile),
+        certificateBody=cert_body,
+        certificatePrivateKey=private_key,
+        certificateChain=chain
+    )
+    pprint(response)
 
 if __name__ == "__main__":
     hook = sys.argv[1]
