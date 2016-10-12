@@ -1,6 +1,6 @@
 ## ACME API Gateway
 
-![image](https://raw.githubusercontent.com/mikeblum/acme-api-gateway/master/images/le-logo-standard.png =200x) ![image](https://raw.githubusercontent.com/mikeblum/acme-api-gateway/master/images/aws-api-gateway.png =125x)
+![image](https://raw.githubusercontent.com/mikeblum/acme-api-gateway/master/images/le-logo-standard.png) ![image](https://raw.githubusercontent.com/mikeblum/acme-api-gateway/master/images/aws-api-gateway.png)
 
 Hook for the execellent [Dehydrated](https://github.com/lukas2511/dehydrated) (previously known as letsencrypt.sh).
 
