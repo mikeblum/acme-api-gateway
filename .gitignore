@@ -5,3 +5,4 @@ env/
 certs
 accounts
 env.sh
+.ssh
