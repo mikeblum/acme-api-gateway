@@ -6,6 +6,8 @@ Hook for the execellent [Dehydrated](https://github.com/lukas2511/dehydrated) (p
 
 This hook uses Route 53 to get certificates for securing an Amazon API Gateway. This allows for secure and custom domains for your API.
 
+I wrote a blog post on how to use `acme-api-gateway`: [Acme API Gateway](https://mblum.me/api-gateway/). It automates the tedious process of provisioning HTTPS certificates for custom domains on Amazon's API Gateway service.
+
 ### Clone Dehydrated
 
     git clone https://github.com/lukas2511/dehydrated.git
